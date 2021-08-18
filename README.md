@@ -133,3 +133,146 @@ HTML파싱할 때 스크립트를 병렬적으로 다운로드 받고 파싱이 
 ----
 
 ### 3. 자바스크립트 데이터 타입
+프로그래밍 언어에서 제일 중요하게 생각하는 것?<br>
+ -> 입력, 연산, 출력, 전송 <br>
+ CPU에 최적화된 연산을 짜는 로직도 중요<br>
+ 메모리의 사용을 최소화<br>
+
+ 어플리케이션을 실행하게 되면 어플리케이션마다 쓸 수 있는 메모리가 할당<br>
+ 이 메모리는 비어 있는 박스들이다.<br>
+ 어플리케이션마다 쓸 수 있는 메모리가 할당되어 진다.<br>
+ 변수를 하나 정의 하면 메모리를 가르키고 있는 포인터가 생성되게 되고 
+ 변수에 저장된 값을 메모리에 저장하게 된다.
+
+ - block scope<br>
+  블록안에서 정의한 변수들은 블록 밖에서 사용할 수 없고,<br>
+	글로벌 스콥은 은 전역에 선언된 변수로 어느 블록에서는 사용 가능하다.<br>
+	글로벌 변수들은 앱이 실행되고 끝날때까지 항상 메모리에 탑재되어 있기 때문에 최소한으로 쓰는것이 좋고 필요한 부분에서만 정의해서 쓰는 것이 좋다
+
+
+- hoisting<br>
+어디에 선언했는지 상관없이 선언만 항상 파일 상위로 끌어올려주는 것을 말합니다.
+
+- var
+  - 블록 스코프를 무시한다. 
+  - var hoisting (선언만 파일의 최상위로 끌어올려준다.)
+  - ES6에서 let이 나오고 사용하지 않는다.
+  - 변수 재선언 가능, 재할당 가능
+  
+```js
+console.log(age); // undefined - var hoisting
+	age = 4;
+	var age;
+console.log(age); // 4
+```
+
+- let
+  - 값 재할당이 가능 =mutable data type(변수 재선언은 불가능)
+  - block scope
+  - ES6에 var를 보완하고자 탄생
+
+- const<br>
+  값이 변경될 수 없는 데이타 타입이다.(immutable data type)<br>
+	변수 재선언 불가능
+	웬만하면 값을 한번 할당하면 값을 변경하지 않는 이유
+	- 보안성
+	- thread의 안정성
+	- 인간의 실수를 방지
+
+- 변수 타입(Variable types)
+  - primitive(원시타입), single item : number, string, boolean, null, undefined, symbol
+  - object, box container
+  - function first-class-function 
+  
+
+- number : 자바스크립트에서는 type이 Dynamic하게 결정 되기 때문에 runtime 실행 중 할당된 값에 따라 타입이 정해진다.
+  - speical numeric value: infinity, -infinity, NaN
+
+```js
+const infinty = 1 / 0; // infinty
+const negativeinfinty = -1 / 0; // -infinty
+const nAn = 'not a number' / 0; //NaN
+```
+
+- bigInt (fairly new, don't use it yet) : 아직 많은 곳에서 사용하지 않음 현재 사용가능한 브라우저는 chrome, firefox
+```js
+const bigInt = 123456789123456789n; // bigInt(chrom, firefox만 사용가능)
+```
+
+- string
+```js
+const char = 'c'; // string
+const brenden = 'brenden'; // string
+const greeting = 'hello' + brenden; // hello brenden 출력
+const helloBob = `hi ${brenden}!`; // hi brenden! 출력
+```
+
+- boolean
+  - false : 0, null, undefined, NaN, ''
+  - true : any other value
+```js
+const canRead = true;
+const test = 3 < 1; // false
+```
+- null / undefined
+  - 차이점 : null은 변수를 선언하고 null이라는 빈값을 넣어줌 <br>undefined는 변수를 선언하고 값을 넣어주지 않음
+  - 공통점: 같은 빈값 
+  - '==' : true / '===' : false
+
+```js
+let nothing = null;
+
+let x; // let x = undefined;
+```
+- symbol : create unique identifiers for objects
+  - value값이 똑같고 심볼을 똑같게 만들라면 .for를 붙임
+  - 심볼의 value값을 출력할려면 .description을 붙여야함
+
+```js
+const symbol1 = Symbol('id');
+const symbol2 = Symbol('id'); // 둘 심볼은 다름
+console.log(symbol1 === symbol2); // false
+
+const symbol1 = Symbol.for('id');
+const symbol2 = Symbol.for('id');
+console.log(symbol1 === symbol2); // true
+
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`)
+```
+
+-  object : 일상생활에서 보는 물건과 물체들을 대표할 수 있는 박스 (객체) 
+-  real-life object, data structure
+
+```js
+const hyerin = { name: 'hyerin', age: 20 };
+hyerin.age = 21;
+```
+변수가 const로 정의 되었고 reference가 들어가 있다.<br>
+reference를 변경할 순 없지만 reference안에 있는 data값은 변경이 가능하다.<br>
+ex) hyerin.age = 21;
+
+- Dynamic typing : dynamically typed language
+- 자바스크립 : 동적 언어 (유연한 언어)
+  
+```js
+let txt = 'hello';
+console.log(text.charAt(0)); // h
+console.log(`value: ${txt}, type: ${typeof txt}`); // string
+txt = 1;
+console.log(`value: ${txt}, type: ${typeof txt}`); // number
+txt = '7' + 5;
+console.log(`value: ${txt}, type: ${typeof txt}`); // string
+txt = '8' / '2';
+console.log(`value: ${txt}, type: ${typeof txt}`); // number
+console.log(text.charAt(0)); // error
+// 자바스크립트는 런타임 도중에 타입이 결정되는 것이 많기 때문에
+// 이러한 에러가 런타임 도중에 많이 나는 이걸 보완하고자 나온 것이
+// typescript이다. 
+```
+
+
+호환성을 생각하면서 코드짜야한다. 
+ES6는 internet explorer는... => babel 사용해서 짜야할 듯...
+
+----
+### 4. 자바스크립트 연산 / 반복문
