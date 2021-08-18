@@ -1,5 +1,5 @@
 # YOUTUBE 드림코딩 엘리님
-## javascript 정리
+## javascript 강의 정리
 
 ### 1. 자바스크립트 이것도 모름?
  - 역사를 통한 개념정리
