@@ -276,3 +276,131 @@ ES6는 internet explorer는... => babel 사용해서 짜야할 듯...
 
 ----
 ### 4. 자바스크립트 연산 / 반복문
+
+Variable let, rw(read, write) <br>
+Constant, r(read only)
+
+Primitive type은 변수에 들어있는 데이터 값 자체 일부를 변경하는 것은 불가능하다. <br>
+값을 바로 메모리에 바로 저장
+
+ex) 'ellie'에 있는 'i'를 'e'로 변경은 불가능
+
+Object type은 너무 크기 때문에 메모에 한번에 다 올리지 못함
+그렇기 때문에 reference가 메모리에 저장된다
+자바스크립트에서 모든 객체는 데이터 변경이 가능하다.
+
+ex) 
+```js
+const hyerin = {name='hyerin'};
+hyerin.name = ellie // 변경 가능
+```
+
+- OR
+
+true가 하나라도 나오면 true
+앞에 true가 나오면 바로 실행을 멈춤
+그 이유는 이미 true가 나왔기 때문에 뒤에 false가 나와도 true인 것은 변함이 없기 때문이다.
+
+- AND
+
+전부가 true여야지 true(OR이랑 반대)
+앞에 false가 나오면 멈춤 OR이랑 같은 이유로 멈춘다.
+이미 하나가 false가 나왔기 때문에 true가 나오더라도 false인 것은 변함이 없기 때문이다.
+
+- NOT
+
+값이 반대로 출력
+ex) !true 면 false / !false 면 true
+
+* 문제
+```js
+0 == false // true
+0 === false // false
+'' == false // true
+'' === false // false
+null == undefined // true
+null === undefined // false
+```
+
+- if / if else / else 
+
+```js
+const name = 'ellie';
+if(name === 'ellie'){ // if 조건문이 true면
+	console.log('Welcome, Ellie!'); // 실행
+} else if(name === 'coder'){ // if 조건문이 false else if 조건문이 true면
+	console.log('You are amazing coder'); // 실행
+} else { // 위 조건문이 다 false
+	console.log('unkwnon'); // 실행
+}
+```
+
+- Ternary operator
+```js
+ condition ? value1 : value2 // true면 value1, false면 value2
+ ```
+
+ - Switch statement
+
+```js
+const browser = 'IE';
+switch (browser){
+	case 'IE':
+		console.log('go away!');
+		break;
+	case 'Chrome':
+	case 'Firefox': // 같은 메세지를 출력하기 때문에 묶음
+		console.log('love you!');
+		break;
+	default:
+		console.log('same all!');
+		break;
+}
+```
+
+- Loop
+  - while loop, while the condition is truthy
+
+while
+```js
+let i =3;
+while(i>0){
+	console.log(`width: ${i}`);
+	i--;
+}
+```
+
+do while
+```js
+do{
+	console.log(`do while: ${i}`);
+	i--;
+} while(i>0);
+
+```
+
+- for loop, for(begin; condition; step)
+
+```js
+for(i=3; i>0; i--){
+	console.log(`for: ${i}`);
+}
+for(let i=3; i>0; i = i -2){
+	// inline variable declaration
+	console.log(`inline variable for: ${i}`);
+}
+```
+
+- nested loops
+
+```js
+for(let i = 0; i<10; i++){
+	for(let j= 0; j<10; j++){
+		console.log(`i: ${i}, j: ${j}`);
+	}
+}
+```
+
+---
+
+### 5. 자바스크립트 Function 함수

@@ -3,7 +3,7 @@
 // use this for Valina Javascript
 'use strict'; // 자바스크립트가 너무 Dymanic하기 때문에 모던하게 											개발하기 위해 써주고 개발해주면 좋음
 
-// 2. Variable :: 변수(변경될 수 있는 값)
+// 2. Variable :: 변수(변경될 수 있는 값), rw(read/ write)
 // let (added in ES6)
 
 { // block scope
@@ -21,17 +21,24 @@ console.log(age); // undefined - var hoisting
 	var age;
 console.log(age); // 4
 
-// 3. Contants
+// 3. Contant, r(read only)
+// use const whenever possible.
+// only use let if  variable needs to change.
+
+const daysInWeek = 7;
+const maxNumber = 5;
+
+// Note!
+// Immutable data types : primitive types, frozen objects (i.e. object.freeze())
+// Mutable data types : all objects by default are mutables in JS
 // favor immutable data type always for a few reasons:
 // - security
 // - thread safety
 // - reduce human mistakes
-const daysInWeek = 7;
-const maxNumber = 5;
 
 // 4. Variable types
-// primitive(더이상 나눠질 수 없는), single item : number, string, boolean, null, undefined, symbol
-// object(여러 박스를 묶어서 하나로 관리), box container
+// primitive(더이상 나눠질 수 없는)type, single item : number, string, boolean, null, undefined, symbol
+// object type(여러 박스를 묶어서 하나로 관리), box container
 // function, first-class function(function도 변수에 데이터 할당이 가능, function에 리턴도 가능, prameter 전달)
 
 const count = 10; // integer
