@@ -404,3 +404,148 @@ for(let i = 0; i<10; i++){
 ---
 
 ### 5. 자바스크립트 Function 함수
+- Function
+
+가장 기본적인 buiding block이다.<br>
+중요한 일을 해서 SubProgram이라고도 불리며 여러번 재사용 가능<br>
+한가지의 task(업무)나 어떠한 값을 계산 하기 위해서 <br>
+하나의 함수는 한가지 일만 하도록 만들어야 한다.<br>
+함수의 이름은 동사형태로 만들어야 함<br>
+자바스크립트는 함수가 Object로 간주되어지기 때문에 변수에 할당 가능하고, 파라미터도 전달 가능하고, 함수를 리턴 가능하다 
+=> Function Expression이 가능하게 함
+
+
+- 자바스크립트에 타입이 따로 없어서 인자를 받을 때 예를 들어 숫자 인자를 받으면 문자열로 출력이 되는데 이런 타입을 정해줄 수 없는 단점을 Typescript가 보완해준다.
+
+```js
+function log(msg){ // 변수의 타입을 정할 수 없어서 곤란...;
+	console.log(msg);
+}
+log('Hello!');
+log(12345); // 숫자로 전달하지만 string으로 출력
+```
+
+- premitive parameters: 메모리에 value값이 담겨있음
+- object parameters: 메모리에 ref가 담겨있음
+  
+
+- Default parameters 
+- 
+```js
+function showMessage(message, from = 'unknown'){ // 지금은 이렇게
+	/* if(from === undefined){
+		form = 'unknown';
+	} */ // 옛날에는 이렇게
+	console.log(`${message} by ${from}`);
+}
+showMessage('Hi!'); // 두번째 파라미터를 보내지 않음 from undefined가 됨
+```
+
+- Rest parameters
+
+```js
+function printAll(...args){ // 배열 형태로 전달 ['dream', 'coding', 'ellie']
+	for(let i = 0; i<args.length; i++){
+		console.log(args[i]);
+	}
+
+	for(const arg of args){
+		console.log(arg);
+	}
+
+	args.forEach((arg) => console.log(arg));
+	// 위 세개 코드 다 같은 결과값
+}
+printAll('dream', 'coding', 'ellie');
+```
+
+
+- Local scope : 밖에서는 안을 볼 수 없고 안에서는 밖을 볼 수 있다.
+
+```js
+let globalMessage = 'global' // global variable 전역 변수
+function prinMessage(){
+	let message = 'hello';
+	console.log(message); // local variable 지역 변수
+	console.log(globalMessage);
+
+	function printAnother(){
+		console.log(message);
+		let childMessage = 'hello';
+	}
+	// console.log(childMessage); error
+	// return undefined; 생략 가능
+
+}
+prinMessage();
+```
+
+- Early return, early exit
+
+```js
+// bad
+function upgradeUser(user){
+	if(user.point > 10){
+		// long upgrade logic...
+	}
+}
+
+// good
+function upgradeUser(user){
+	if(user.point <= 10){
+		return;
+	}
+	// long upgrade logic...
+}
+```
+
+- anonymous function (이름이 없는 함수)
+```js
+const print = function(){
+	console.log('print');
+};
+print();
+```
+- named function (이름 있는 함수)
+
+```js
+const printNo = function print() {
+	console.log('no!');
+}
+```
+
+- callback function
+
+```js
+function randomQuiz(answer, printYes, printNo){
+	if(answer === 'love you'){
+		printYes();
+	} else{
+		printNo();
+	}
+}
+```
+
+- Arrow function
+
+```js
+const simplePrint = () => console.log('simplePrint!');
+const add = (a, b) =>{
+	// do something more
+	return a * b;
+}
+```
+
+- IIFE : Immediately Invoked Function Expression
+```js
+(function hello(){
+	console.log('IIFE');
+})();
+```
+함수를 따로 실행하는 코드를 넣지 않아도 실행되게 하는 함수
+IIFE(즉시실행함수)의 코드는 https://github.com/danbe80/2021-danbe-weather-app 
+
+
+
+
+
