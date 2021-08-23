@@ -147,3 +147,22 @@ const add = (a, b) =>{
 (function hello(){
 	console.log('IIFE');
 })();
+
+function calculate(command, a, b){
+	switch(command){
+		case 'add':
+			return a + b;
+		case 'substract':
+			return a - b;
+		case 'divide':
+			return a / b;
+		case 'multiply':
+			return a * b;
+		case 'remainder':
+			return a % b;
+		default:
+			throw Error('올바른 연산자를 입력하시오');
+	}
+}
+
+console.log(calculate('add', 2, 4));

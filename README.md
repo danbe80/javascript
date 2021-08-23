@@ -545,6 +545,10 @@ const add = (a, b) =>{
 함수를 따로 실행하는 코드를 넣지 않아도 실행되게 하는 함수
 IIFE(즉시실행함수)의 코드는 https://github.com/danbe80/2021-danbe-weather-app 
 
+---
+
+### 6. 자바스크립트 Class 객체지향언어
+#### Class vs Object
 
 
 
