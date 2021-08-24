@@ -548,8 +548,137 @@ IIFE(즉시실행함수)의 코드는 https://github.com/danbe80/2021-danbe-weat
 ---
 
 ### 6. 자바스크립트 Class 객체지향언어
-#### Class vs Object
+
+class란 연관있는 데이터를 모아놓은 컨테이너
+
+class안에서 Properties(속성; Fields)와 Function(method)가 있고 class안에 Fields만 있는 경우도 있는데 Data만 있는 것을 Data class라고 함
+
+class안에 내부적 변수와 외부적 변수를 나누는 것을 캡슐화라고 한다.
+
+상속과 다양성을 일어날 수 있음 ⇒ 객체지향언어
+
+class는 ES6부터 추가됨
+
+class → 틀만 있음(No Data in; 데이터가 들어있지 않음) /
+
+- template
+- declare once
+- no data in
+
+object → 실제 데이터를 넣음(Data in)
+
+- instance of a class
+- created many times
+- data in
 
 
+constructor → class내에서 객체를 생성, 초기화하기 위한 특별한 method
 
+Getter and Setter 
 
+```jsx
+class User {
+constructor(firstName, lastName, age) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.age = age;
+}
+
+	get age(){ // getter: value를 리턴한다.
+		return this._age; // set에서 전달된 value값이 업데이트 되는게 
+											// 아니라 setter를 호출해 
+											// callstack 초과가 일어남
+											// 그렇기 때문에 this.age와 조금 다른 변수로
+
+	}
+
+	set age(value){ // value를 설정하고
+		this._age = value < 0 ?  0 : value;
+	}
+}
+```
+
+Public 과 Private
+
+```jsx
+class Experiment {
+	publicField = 2; // 외부에서 접근이 가능
+	#privateField = 0; // class내부에서 접근이나 읽기가 가능 외부는 X
+}
+```
+
+Static
+
+공통된 것을 Data의 상관없이 동일하게 사용되어지는 애들을 붙인다.
+
+```jsx
+class Article {
+
+	static publisher = 'Dream Coding';
+
+	constructor(articleNumber){
+
+	this.articleNumber = articleNumber;
+
+	}
+
+	static printPublisher(){
+
+	console.log(Article.publisher);
+
+	}
+
+}
+
+const article1 = new Article(1);
+const article2 = new Article(2); 
+// article1, article2의 publisher 변수를 호출하면 undefined가 나옴
+// static은 복사된 객체로 static변수는 복사되지 않는다.
+console.log(Article.publisher);
+Article.printPublisher();
+```
+
+static은 메서드, 속성에도 사용할 수 있다. 
+
+상속과 다양성
+
+예를 들어 삼각형, 사각형, 원형 등등의 도형이라는 공통점으로 class를 생성
+
+```jsx
+class Shape {
+	constructor(width, height, color){ //공통으로 가지고 있는 변수
+		this.width = width;
+		this.height = height;
+		this.color = color;
+	}
+	
+	draw(){
+		console.log(`drawing ${this.color} color of`);
+	}
+	getArea(){
+		return this.width * this.height;
+	}
+}
+```
+
+Shape이라는 클래스를 정의 후
+
+각 도형의 객체를 정의
+
+```jsx
+class Rectangle extends Shape {} // Shape class를 상속
+class Triangle extends Shape{ // Shape class를 상속
+	draw(){
+		super.draw(); // 부모의 메서드 호출
+		console.log('🔺');
+	}
+	getArea(){
+		return this.width * this.height / 2;
+	}
+
+	toString(){
+		return `Triangle: color: ${this.color}`
+	}
+} // 상속을 받고 그 객체안에 다시 메서드를 재정의 하는 것을
+	// overriding 이라고 함
+```

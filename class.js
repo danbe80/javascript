@@ -56,7 +56,6 @@ console.log(user1.age);
 class Experiment {
 	publicField = 2; // 외부에서 접근이 가능
 	#privateField = 0; // class내부에서 접근이나 읽기가 가능 외부는 X
-
 }
 const experiment = new Experiment();
 console.log(experiment.publicField);
@@ -77,7 +76,8 @@ class Article {
 
 const article1 = new Article(1);
 const article2 = new Article(2);
-console.log(Article.publisher);
+console.log(article1.publisher); // undefined
+console.log(Article.publisher); // Dream Coding
 Article.printPublisher();
 
 // 상속과 다양성
