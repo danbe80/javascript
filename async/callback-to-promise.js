@@ -41,25 +41,7 @@ userStorage
 	.then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
 	.catch(console.log);
 
-
-
-/*
-
-userStorage.loginUser(
-	id,
-	password,
-	(user) => {
-		userStorage.getRoles(
-			user,
-			(userwithRole) => {
-				alert(`Hello ${userwithRole.name}, you have a ${userwithRole.role} role`);
-			},
-			(error) => {
-				console.log(error)
-			})
-	},
-	(error) => {
-		console.log(error)
-	})
-
- */
+	async function login() {
+		return Promise.all([loginUser(), getRoles()])
+		.then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
+	}
